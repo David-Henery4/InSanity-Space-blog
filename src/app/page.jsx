@@ -1,12 +1,13 @@
 // import Image from 'next/image'
-import { Button } from "@/components/ui/button"
+import { Navbar } from "@/components/shared"
+import { Hero, FeaturedStories } from "@/components/home-sections"
 
 export default function Home() {
   return (
-    <main className="">
-      <Button>
-        Press
-      </Button>
+    <main className="grid grid-cols-mob pb-48">
+      <Navbar/>
+      <Hero/>
+      <FeaturedStories/>
     </main>
   )
 }
