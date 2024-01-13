@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { featuredPlaceholderImg } from "../../../../public/assets/images";
 import { Tag } from "@/components/shared";
+import { featuredPlaceholderImg } from "../../../../public/assets/images";
 
-const FeaturedCard = () => {
+const BlogCard = () => {
   return (
     <div className="w-full">
       {/* Images */}
@@ -38,6 +38,6 @@ const FeaturedCard = () => {
       </div>
     </div>
   );
-};
+}
 
-export default FeaturedCard;
+export default BlogCard
