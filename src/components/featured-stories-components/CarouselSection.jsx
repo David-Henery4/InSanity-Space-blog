@@ -11,7 +11,20 @@ const CarouselSection = () => {
   return (
     <div className="w-full mt-4">
       <Carousel>
-        <CarouselContent className="-ml-8">
+        <div className="flex justify-end items-center">
+        <CarouselPrevious />
+        <CarouselNext />
+        </div>
+        <CarouselContent className="-ml-8 mt-3">
+          <CarouselItem className="pl-8">
+            <FeaturedCard />
+          </CarouselItem>
+          <CarouselItem className="pl-8">
+            <FeaturedCard />
+          </CarouselItem>
+          <CarouselItem className="pl-8">
+            <FeaturedCard />
+          </CarouselItem>
           <CarouselItem className="pl-8">
             <FeaturedCard />
           </CarouselItem>
@@ -22,8 +35,6 @@ const CarouselSection = () => {
             <FeaturedCard />
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious  />
-        <CarouselNext />
       </Carousel>
     </div>
   );
