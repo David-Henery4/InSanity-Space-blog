@@ -2,16 +2,14 @@ import { HeadingSection, PostsContainer, SearchAndFilters } from "../stories-sec
 
 const StoriesSection = () => {
   return (
-    <section className="grid col-start-2 col-end-12 gap-y-11">
-      
-      <HeadingSection/>
-      
-      <SearchAndFilters/>
-      
-      <PostsContainer/>
-      
+    <section className="grid col-start-2 col-end-12 gap-y-11" id="stories">
+      <HeadingSection />
+
+      <SearchAndFilters />
+
+      <PostsContainer />
     </section>
-  )
+  );
 }
 
 export default StoriesSection

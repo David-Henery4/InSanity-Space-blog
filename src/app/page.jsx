@@ -4,7 +4,7 @@ import { Hero, FeaturedStories, StoriesSection } from "@/components/home-section
 
 export default function Home() {
   return (
-    <main className="grid grid-cols-mob pb-48 gap-y-16">
+    <main className="grid grid-cols-mob pb-48 gap-y-16 lgMob:grid-cols-tab medTab:gap-y-28">
       <Navbar/>
       <Hero/>
       <FeaturedStories/>

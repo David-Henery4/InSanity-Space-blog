@@ -1,11 +1,14 @@
 
-
-const Tag = ({ children }) => {
+const Tag = ({ children, isCard = false }) => {
   return (
-    <div className="p-3 py-[6px] bg-lightGreen text-green rounded-3xl text-xs">
-      {children}
+    <div
+      className={`p-3 py-[6px] bg-lightGreen text-green font-bold rounded-3xl ${
+        isCard ? "text-[8px]" : "text-xs"
+      }`}
+    >
+      <p>{children}</p>
     </div>
   );
 };
 
-export default Tag
+export default Tag;

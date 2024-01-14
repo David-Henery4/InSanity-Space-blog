@@ -34,7 +34,7 @@ const FeaturedCard = () => {
 
       {/* Tags */}
       <div className="flex flex-wrap justify-start items-start mt-8 gap-3">
-        <Tag>TECHNOLOGY</Tag>
+        <Tag isCard={true} >TECHNOLOGY</Tag>
       </div>
     </div>
   );

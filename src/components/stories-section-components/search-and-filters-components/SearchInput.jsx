@@ -13,7 +13,7 @@ const SearchInput = () => {
   return (
     <div className="w-full flex justify-start items-center bg-darkGrey px-4 py-3 rounded-md">
       <SearchIcon className="flex-none" />
-      <div className="relative">
+      <div className="relative w-full">
         <label htmlFor="search-input" className={`absolute left-3 pointer-events-none ${isLabelActive && "opacity-0"}`}>
           Search
         </label>

@@ -3,7 +3,7 @@ import { poster } from "../../../public/assets/images"
 
 const Poster = () => {
   return (
-    <div className="relative w-full pt-14 p-6 overflow-hidden rounded-md">
+    <div className="relative w-full pt-14 p-6 overflow-hidden rounded-md xLgMob:flex-[1] xLgMob:self-stretch xLgMob:flex xLgMob:items-end">
       <Image
         className="w-full h-full absolute top-0 left-0"
         src={poster.src}
