@@ -15,23 +15,23 @@ const CarouselSection = () => {
           <CarouselPrevious />
           <CarouselNext />
         </div>
-        <CarouselContent className="-ml-6 mt-3">
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+        <CarouselContent className="-ml-6 mt-3 lgDesk:-ml-8">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
-          <CarouselItem className="pl-6 smTab:basis-1/2">
+          <CarouselItem className="pl-6 smTab:basis-1/2 lgTab:basis-1/3 lgDesk:pl-8">
             <FeaturedCard />
           </CarouselItem>
         </CarouselContent>

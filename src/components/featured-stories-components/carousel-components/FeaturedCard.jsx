@@ -8,7 +8,7 @@ const FeaturedCard = () => {
       {/* Images */}
       <div className="w-full">
         <Image
-          className="w-full"
+          className="w-full lgTab:h-[272px]"
           src={featuredPlaceholderImg.src}
           alt="featured story thumbnail"
           width={200}
@@ -18,14 +18,14 @@ const FeaturedCard = () => {
 
       {/* Text */}
       <div>
-        <p className="text-xs my-2 text-lightGrey">John Doe • 19 Jan 2022</p>
+        <p className="text-xs my-2 text-lightGrey lgTab:my-4">John Doe • 19 Jan 2022</p>
         <div>
-          <p className="text-lg font-bold">
+          <p className="text-lg font-bold max-w-[360px]">
             A small business is only as good as its tools and it is totally
             true.
           </p>
           {/* Need max character limit */}
-          <p className="text-sm mt-4">
+          <p className="text-sm mt-4 max-w-[320px]">
             We&apos;ve all experienced the chaos of multiple spreadsheets,
             tracking and insight tools...
           </p>
@@ -34,7 +34,7 @@ const FeaturedCard = () => {
 
       {/* Tags */}
       <div className="flex flex-wrap justify-start items-start mt-8 gap-3">
-        <Tag isCard={true} >TECHNOLOGY</Tag>
+        <Tag isCard={true}>TECHNOLOGY</Tag>
       </div>
     </div>
   );

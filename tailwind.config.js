@@ -15,9 +15,11 @@ module.exports = {
       smTab: "35em", // 560px
       tab: "41.25em", // 660px
       medTab: "47.5em", // 760px
+      lgTab: "57.75em", // 924px
       lap: "64em", // 1024px
       lgLap: "67.5em", // 1080px
       desk: "70.25em", // 1124px
+      lgDesk: "80em", // 1280px
     },
     colors: {
       orange: "#F38D14",

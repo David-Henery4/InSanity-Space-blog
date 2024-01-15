@@ -15,8 +15,8 @@ const Poster = () => {
       <div className="relative z-10">
         <div className="rounded-full bg-white w-5 h-5"></div>
         <div className="mt-5 max-w-32">
-          <h3 className="text-base">shadcn/ui</h3>
-          <p className="mt-2 text-xs text-offWhite">
+          <h3 className="text-base font-semibold medTab:text-lg">shadcn/ui</h3>
+          <p className="mt-2 text-xs text-offWhite medTab:text-sm">
             Beautifully designed components built with Radix UI and Tailwind
             CSS.
           </p>
