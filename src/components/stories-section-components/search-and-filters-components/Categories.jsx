@@ -3,8 +3,8 @@ import { Tag } from "@/components/shared";
 const Categories = () => {
   return (
     <div className="mt-8">
-      <h3 className="text-sm font-semibold text-center">CATEGORIES</h3>
-      <div className="flex flex-wrap justify-center items-start mt-5 gap-3">
+      <h3 className="text-sm font-semibold text-center lgLap:text-left">CATEGORIES</h3>
+      <div className="flex flex-wrap justify-center items-start mt-5 gap-3 lgLap:justify-start">
         <Tag>ALL CATEGORIES</Tag>
         <Tag>START UP</Tag>
         <Tag>TECHNOLOGY</Tag>

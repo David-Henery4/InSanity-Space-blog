@@ -15,6 +15,9 @@ module.exports = {
       smTab: "35em", // 560px
       tab: "41.25em", // 660px
       medTab: "47.5em", // 760px
+      lap: "64em", // 1024px
+      lgLap: "67.5em", // 1080px
+      desk: "70.25em", // 1124px
     },
     colors: {
       orange: "#F38D14",
@@ -31,11 +34,14 @@ module.exports = {
     gridTemplateColumns: {
       mob: "24px repeat(10,1fr) 24px",
       tab: "40px repeat(10,1fr) 40px",
+      lap: "105px repeat(10,1fr) 105px",
+      desk: "140px repeat(10,1fr) 140px",
       postsMob: "repeat(auto-fit, minmax(200px, 1fr))",
       postCard: "repeat(2,1fr)",
+      postsSectionLap: "repeat(12,1fr)",
     },
     gridTemplateRows: {
-      postCard: "min-content auto",
+      postCard: "min-content 1fr", // 1fr was auto
     },
     container: {
       center: true,
