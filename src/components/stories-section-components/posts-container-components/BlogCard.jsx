@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Tag } from "@/components/shared";
-import { featuredPlaceholderImg } from "../../../../public/assets/images";
+// import { featuredPlaceholderImg } from "../../../../public/assets/images";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
@@ -49,11 +49,11 @@ const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author
   // console.log(body)
   //
   return (
-    <div className="w-full tab:grid tab:grid-cols-postCard tab:grid-rows-postCard tab:min-h-[260px] tab:gap-x-4">
+    <div className="w-full flex flex-col gap-2 tab:gap-y-0 tab:grid tab:grid-cols-postCard tab:grid-rows-postCard tab:min-h-[260px] tab:gap-x-4">
       {/* Images */}
-      <div className="w-full tab:row-span-2">
+      <div className="w-full h-[250px] tab:min-h-full tab:h-[260px] tab:row-span-2">
         <Image
-          className="w-full tab:h-full"
+          className="w-full h-full"
           src={urlFor(asset._ref).url()}
           alt="featured story thumbnail"
           width={200}
@@ -62,7 +62,7 @@ const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author
       </div>
 
       {/* Text */}
-      <div>
+      <div className="mb-8">
         <p className="text-xs my-2 text-lightGrey tab:mt-0">
           {author?.name} • {formatDate(publishedAt)}
         </p>
@@ -83,7 +83,7 @@ const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author
       </div>
 
       {/* Tags */}
-      <div className="flex flex-wrap justify-start items-start mt-8 gap-3">
+      <div className="flex flex-wrap justify-start items-start mt-auto gap-2 tab:h-full">
         {categories.map((category) => {
           //
           return (
