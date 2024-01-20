@@ -26,7 +26,7 @@ const StoriesSection = async () => {
   // console.log(posts)
   return (
     <section
-      className="grid col-start-2 col-end-12 gap-y-11 lgLap:grid-cols-postsSectionLap lgLap:gap-x-8 lgLap:gap-y-28"
+      className="w-full grid gap-y-11 lgLap:grid-cols-postsSectionLap lgLap:gap-x-8 lgLap:gap-y-28"
       id="stories"
     >
       <HeadingSection />

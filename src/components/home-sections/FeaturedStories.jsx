@@ -2,7 +2,7 @@ import { HeadingSection, CarouselSection } from "../featured-stories-components"
 
 const FeaturedStories = () => {
   return (
-    <section className="col-start-2 col-end-12" id="featured">
+    <section className="" id="featured">
       <HeadingSection />
       <CarouselSection />
     </section>

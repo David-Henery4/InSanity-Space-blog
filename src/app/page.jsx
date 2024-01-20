@@ -5,8 +5,8 @@ import { Hero, FeaturedStories, StoriesSection } from "@/components/home-section
 export default function Home() {
   // 
   return (
-    <main className="max-w-[1440px] mx-auto grid grid-cols-mob pb-48 gap-y-16 lgMob:grid-cols-tab medTab:gap-y-28 lap:grid-cols-lap desk:grid-cols-desk">
-      <Navbar />
+    <main className="w-full col-start-2 col-end-12 py-28 flex flex-col gap-16 medTab:gap-28">
+      {/* <Navbar /> */}
       <Hero />
       <FeaturedStories />
       <StoriesSection />
