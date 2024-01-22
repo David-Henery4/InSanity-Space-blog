@@ -10,13 +10,12 @@ const PostHeader = ({
 }) => {
   //
   return (
-    <header className="w-full flex flex-col justify-center items-center gap-8">
-
+    <header className="w-full flex flex-col justify-center items-center gap-8 medTab:flex-row medTab:gap-5 lap:gap-12">
       {/* Main Post Image */}
       <PostMainImage img={mainImage} />
 
       {/* Heading & Avatar */}
-      <div className="w-full">
+      <div className="w-full medTab:flex-1">
         <PostUpdatedDate updatedAt={_updatedAt} />
 
         {/* Heading & Sub-Heading */}

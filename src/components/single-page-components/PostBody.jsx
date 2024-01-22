@@ -1,9 +1,12 @@
+import { PortableText } from "@portabletext/react";
+import components from "@/components/portableTextComponents/textComponents";
 
-
-const PostBody = () => {
+const PostBody = ({ body }) => {
   return (
-    <section>PostBody</section>
+  <section className="mt-14 max-w-[750px] mx-auto">
+    <PortableText value={body}/>
+  </section>
   )
-}
+};
 
-export default PostBody
+export default PostBody;

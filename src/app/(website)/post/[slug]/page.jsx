@@ -31,11 +31,11 @@ const SinglePostPage = async ({params: {slug}}) => {
   console.log(postInfo)
   //
   return (
-    <main className="w-full col-start-2 col-end-12 pt-14 pb-28">
+    <main className="w-full col-start-2 col-end-12 pt-4 pb-28 tab:pt-9 medTab:pt-16">
       
       <PostHeader {...postInfo} />
       
-      <PostBody />
+      <PostBody body={postInfo?.body} />
       
     </main>
   );
