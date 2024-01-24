@@ -10,6 +10,7 @@ const PostMainImage = ({img}) => {
         className="w-full min-h-[250px] object-cover object-center medTab:min-h-[340px] lap:min-h-[450px]"
         width={200}
         height={200}
+        priority
       />
     </div>
   );
