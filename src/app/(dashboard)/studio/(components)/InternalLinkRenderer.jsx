@@ -1,6 +1,6 @@
 "use client";
 import { Tooltip, Stack, Text } from "@sanity/ui";
-import { LinkIcon } from "@sanity/icons";
+import { LinkIcon,LaunchIcon } from "@sanity/icons";
 import { useEffect, useState } from "react";
 import { client } from "../../../../../sanity/lib/client";
 
@@ -51,7 +51,7 @@ const InternalLinkRenderer = (props) => {
             {`${reference.title}` || "No title or slug found"}
           </Text>
           <Text align="center" size={1} muted>
-            {`Slug: /${reference.slug}` || ""}
+            {`Slug: post/${reference.slug}` || ""}
           </Text>
         </Stack>
       }
@@ -60,7 +60,8 @@ const InternalLinkRenderer = (props) => {
       portal
     >
       <span className="pl-[0.3em] pr-[0.2em]">
-        <LinkIcon /> <>{props.renderDefault(props)}</>
+        <>{props.renderDefault(props)}</>
+        <LaunchIcon className="pl-[0.2em]" />
       </span>
     </Tooltip>
   );

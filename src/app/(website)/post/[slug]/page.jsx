@@ -15,20 +15,25 @@ export async function generateStaticParams () {
 }
 
 const SinglePostPage = async ({params: {slug}}) => {
-  console.log(slug)
+  // console.log(slug)
   const postInfo =
     await client.fetch(`*[_type == "post" && slug.current == "${slug}"][0]{
-  mainImage,
+  ...,
+  author->,
   categories[]->,
-  _id,
-  slug,
-  title,
-  body,
-  publishedAt,
-  _updatedAt,
-  author->
-  }`);
-  console.log(postInfo)
+  body[]{
+    ...,
+    markDefs[]{
+      ...,
+      _type == "internalLink" => { "href": "/"+ @.reference-> slug.current },
+    },
+    children,
+    _type,
+    style,
+    _key
+  }
+}`);
+  // console.log("postInfo",postInfo)
   //
   return (
     <main className="w-full col-start-2 col-end-12 pt-4 pb-28 tab:pt-9 medTab:pt-16">

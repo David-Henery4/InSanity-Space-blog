@@ -1,8 +1,8 @@
-import { LinkIcon, LaunchIcon } from "@sanity/icons";
-import { Bock, Box, Stack, Text, Tooltip } from "@sanity/ui";
+import { LaunchIcon } from "@sanity/icons";
+import { Box, Stack, Text, Tooltip } from "@sanity/ui";
 
 const LinkRenderer = (props) => {
-  console.log("LinkRenderer", props);
+  //
   return (
     <Tooltip
       content={
@@ -27,13 +27,5 @@ const LinkRenderer = (props) => {
   );
 };
 
-{/* <Tooltip>
-  <span>
-    {props.renderDefault(props)}
-    <a contentEditable={false} href={props.value.href}>
-      <LaunchIcon />
-    </a>
-  </span>
-</Tooltip>; */}
 
 export default LinkRenderer;
