@@ -1,14 +1,6 @@
 import { HeadingSection, PostsContainer, SearchAndFilters } from "../stories-section-components"
 import { client } from "../../../sanity/lib/client"
 
-// *[_type == "post"]{
-//   _id,
-//     slug,
-//   title,
-// mainImage,
-// publishedAt,
-//   categories[]->
-// }
 
 const StoriesSection = async () => {
   const posts = await client.fetch(
@@ -20,7 +12,17 @@ const StoriesSection = async () => {
       publishedAt,
       categories[]->,
       author->,
-      body
+      body[]{
+    ...,
+    markDefs[]{
+      ...,
+      _type == "internalLink" => { "href": "/"+ @.reference-> slug.current },
+    },
+    children,
+    _type,
+    style,
+    _key
+  }
     }`
   );
   // console.log(posts)

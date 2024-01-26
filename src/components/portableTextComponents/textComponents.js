@@ -18,6 +18,19 @@ const components = {
         <blockquote className="text-green italic">{children}</blockquote>
       </div>
     ),
+    cardText: ({children}) => {
+      // console.log("child: ", children)
+      return (
+        <p>
+          {children.map((item) => {
+              console.log("item: ", item)
+              return item?.type
+                ? item?.type(item?.props)
+                : item.substring(0, 90) + "...";
+            })}
+        </p>
+      )
+    }
   },
   list: {
     bullet: ({ children }) => <ul className="mt-xl">{children}</ul>,

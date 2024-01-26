@@ -1,23 +1,17 @@
-import Image from "next/image";
 import { Tag } from "@/components/shared";
 import { PortableText } from "@portabletext/react";
-import { formatDate, urlFor } from "@/helpers";
+import { formatDate } from "@/helpers";
 import components from "@/components/portableTextComponents/textComponents";
+import { CardImage, CardTitle } from "./card-components";
 
-const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author, body }) => {
+const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author, body, slug: {current} }) => {
+  // console.log(body[0])
+  body[0].style = "cardText"
   //
   return (
     <div className="w-full flex flex-col gap-2 tab:gap-y-0 tab:grid tab:grid-cols-postCard tab:grid-rows-postCard tab:min-h-[260px] tab:gap-x-4">
       {/* Images */}
-      <div className="w-full h-[250px] tab:min-h-full tab:h-[260px] tab:row-span-2">
-        <Image
-          className="w-full h-full"
-          src={urlFor(asset._ref).url()}
-          alt="featured story thumbnail"
-          width={200}
-          height={200}
-        />
-      </div>
+      <CardImage slug={current} img={asset._ref} />
 
       {/* Text */}
       <div className="mb-8">
@@ -25,11 +19,8 @@ const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author
           {author?.name} • {formatDate(publishedAt)}
         </p>
         <div>
-          <p className="text-lg font-bold  max-w-[320px]">{title}</p>
-          <PortableText
-            value={body[0]}
-            components={components}
-          />
+          <CardTitle title={title} slug={current}/>
+          <PortableText value={body[0]} components={components} />
         </div>
       </div>
 
