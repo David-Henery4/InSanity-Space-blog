@@ -4,9 +4,16 @@ import { formatDate } from "@/helpers";
 import components from "@/components/portableTextComponents/textComponents";
 import { CardImage, CardTitle } from "./card-components";
 
-const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author, body, slug: {current} }) => {
-  // console.log(body[0])
-  body[0].style = "cardText"
+const BlogCard = ({
+  title,
+  mainImage: { asset },
+  publishedAt,
+  categories,
+  author,
+  body,
+  slug: { current },
+  postDescription,
+}) => {
   //
   return (
     <div className="w-full flex flex-col gap-2 tab:gap-y-0 tab:grid tab:grid-cols-postCard tab:grid-rows-postCard tab:min-h-[260px] tab:gap-x-4">
@@ -19,8 +26,9 @@ const BlogCard = ({ title, mainImage: { asset }, publishedAt, categories, author
           {author?.name} • {formatDate(publishedAt)}
         </p>
         <div>
-          <CardTitle title={title} slug={current}/>
-          <PortableText value={body[0]} components={components} />
+          <CardTitle title={title} slug={current} />
+          {/* <PortableText value={body[0]} components={components} /> */}
+          <p className="mt-4 text-lightGrey">{postDescription}</p>
         </div>
       </div>
 

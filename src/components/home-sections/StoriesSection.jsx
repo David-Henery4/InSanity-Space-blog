@@ -22,7 +22,8 @@ const StoriesSection = async () => {
     _type,
     style,
     _key
-  }
+  },
+  postDescription
     }`
   );
   // console.log(posts)

@@ -64,6 +64,13 @@ export const post = {
       initialValue: false,
     },
     {
+      name: "postDescription",
+      title: "Post Description",
+      type: "text",
+      validation: (Rule) =>
+        Rule.required().max(90).warning("Can't be longer than 90 characters"),
+    },
+    {
       name: "body",
       title: "Body",
       type: "blockContent",

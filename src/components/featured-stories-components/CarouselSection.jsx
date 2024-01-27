@@ -17,7 +17,9 @@ const CarouselSection = async () => {
   author->,
   publishedAt,
   categories[]->,
-  mainImage
+  mainImage,
+  postDescription,
+  slug
 }`
   );
   //
