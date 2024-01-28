@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { urlFor } from "@/helpers";
 
-const CardImage = ({ slug, img }) => {
+const BlogCardImage = ({ slug, img }) => {
   //
   return (
     <div className="w-full h-[250px] tab:min-h-full tab:h-[260px] tab:row-span-2">
@@ -19,4 +19,4 @@ const CardImage = ({ slug, img }) => {
   );
 };
 
-export default CardImage;
+export default BlogCardImage;

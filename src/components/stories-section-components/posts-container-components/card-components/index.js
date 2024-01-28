@@ -1,6 +1,4 @@
-import CardImage from "./CardImage";
-import CardTitle from "./CardTitle";
+import BlogCardImage from "./BlogCardImage";
 export {
-  CardImage,
-  CardTitle
+  BlogCardImage,
 }
