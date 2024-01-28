@@ -3,6 +3,7 @@ import Logo from "./space-blog-logo.svg"
 import ChevRight from "./chev-right.svg"
 import ChevLeft from "./chev-left.svg"
 import SearchIcon from "./search-icon.svg";
+import CloseIcon from "./close-icon.svg"
 
 export {
   BurgerIcon,
@@ -10,4 +11,5 @@ export {
   ChevLeft, 
   ChevRight,
   SearchIcon,
+  CloseIcon,
 }

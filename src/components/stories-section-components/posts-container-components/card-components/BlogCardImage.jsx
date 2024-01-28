@@ -6,7 +6,7 @@ const BlogCardImage = ({ slug, img }) => {
   //
   return (
     <div className="w-full h-[250px] tab:min-h-full tab:h-[260px] tab:row-span-2">
-      <Link href={`post/${slug}`}>
+      <Link href={`post/${slug?.current}`}>
         <Image
           className="w-full h-full"
           src={urlFor(img).url()}

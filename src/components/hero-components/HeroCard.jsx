@@ -1,41 +1,52 @@
 import Image from "next/image";
-import { mainStoryImg } from "../../../public/assets/images";
+import Link from "next/link";
+// import { mainStoryImg } from "../../../public/assets/images";
 import { client } from "../../../sanity/lib/client";
 import { formatDate, urlFor } from "@/helpers";
 
 const HeroCard = async () => {
-  const mainStory = await client.fetch(`*[_type == "post" && mainStory == true]{
+  const mainStory =
+    await client.fetch(`*[_type == "post" && mainStory == true][0]{
   _id,
   title,
   author->,
   publishedAt,
-  mainImage
+  mainImage,
+  postDescription,
+  slug
 }`);
   //
   return (
     <div className="w-full xLgMob:flex-[4]">
       <div className="overflow-hidden rounded-t-lg">
-        <Image
-          priority
-          src={urlFor(mainStory[0]?.mainImage).url()}
-          className="w-full min-h-[320px] max-h-[325px] medTab:max-h-[450px]"
-          width={200}
-          height={200}
-          alt={mainStory[0]?.mainImage?.alt}
-        />
+        <Link href={`post/${mainStory?.slug?.current}`}>
+          <Image
+            priority
+            src={urlFor(mainStory?.mainImage).url()}
+            className="w-full min-h-[320px] max-h-[325px] medTab:max-h-[450px]"
+            width={200}
+            height={200}
+            alt={mainStory?.mainImage?.alt}
+          />
+        </Link>
       </div>
       <div className="mt-2">
-        <h2 className="text-lg font-semibold max-w-[420px] medTab:text-2xl medTab:max-w-[520px]">
-          {mainStory[0]?.title}
-        </h2>
-        <div className="text-grey text-sm flex justify-start items-center mt-4 medTab:mt-8">
-          <p>{mainStory[0]?.author?.name}</p>
-          <div className="w-[6px] h-[6px] rounded-full bg-grey mx-2"></div>
-          <p>{formatDate(mainStory[0]?.publishedAt)}</p>
+        <div>
+          <Link href={`post/${mainStory?.slug?.current}`}>
+            <h2 className="text-lg font-semibold max-w-[420px] medTab:text-2xl medTab:max-w-[520px] hover:text-orange">
+              {mainStory?.title}
+            </h2>
+          </Link>
+          <p className="mt-4 text-lightGrey">{mainStory.postDescription}</p>
+        </div>
+        <div className="text-lightGrey text-sm flex justify-start items-center mt-2 medTab:mt-4">
+          <p>{mainStory?.author?.name}</p>
+          <div className="w-[6px] h-[6px] rounded-full bg-lightGrey mx-2"></div>
+          <p>{formatDate(mainStory?.publishedAt)}</p>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default HeroCard
+export default HeroCard;
