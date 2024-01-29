@@ -4,17 +4,20 @@ import Link from "next/link";
 import { Logo, CloseIcon } from "../../../public/assets";
 import { useContext, useEffect } from "react";
 import { SidebarContext } from "@/context/sidebarContext";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Sidebar = () => {
   console.log("sidebar")
   const {setIsSidebarOpen, isSidebarOpen} = useContext(SidebarContext)
-  console.log("sidebar", isSidebarOpen)
+  const isScreenTabletAndAbove = useMediaQuery("(min-width:41.25em)");
+  //
   useEffect(() => {
-    console.log("Effect", isSidebarOpen);
-  },[isSidebarOpen])
+    if (isScreenTabletAndAbove) setIsSidebarOpen(false)
+  },[isScreenTabletAndAbove])
+  //
   return (
     <aside
-      className={`fixed z-50 top-0 left-0 w-full min-h-full px-6 py-8 bg-blueyGrey flex flex-col justify-center items-start transition-all ${
+      className={`fixed z-50 top-0 left-0 w-full min-h-full px-6 py-8 bg-blueyGrey flex flex-col justify-center items-start transition-all tab:hidden ${
         isSidebarOpen ? "-translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -36,6 +39,9 @@ const Sidebar = () => {
             <li
               key={navItem.id}
               className="text-3xl font-semibold hover:text-orange"
+              onClick={() => {
+                setIsSidebarOpen(false)
+              }}
             >
               <Link href={navItem.path}>{navItem.label}</Link>
             </li>
