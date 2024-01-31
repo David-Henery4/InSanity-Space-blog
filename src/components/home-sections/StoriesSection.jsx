@@ -2,7 +2,8 @@ import { HeadingSection, PostsContainer, SearchAndFilters } from "../stories-sec
 import { client } from "../../../sanity/lib/client"
 
 
-const StoriesSection = async () => {
+const StoriesSection = async (props) => {
+  console.log(props)
   const posts = await client.fetch(
     `*[_type == "post"] | order(publishedAt desc){
       _id,

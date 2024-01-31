@@ -3,7 +3,8 @@ import { SearchIcon } from "../../../../public/assets";
 import { useState } from "react";
 
 const SearchInput = () => {
-  const [searchValue,setSearchValue] = useState("")
+  console.log("Search Input");
+  const [searchValue, setSearchValue] = useState("");
   const [isLabelActive, setIsLabelActive] = useState(false);
   //
   const checkSearchValue = () => {
@@ -30,6 +31,6 @@ const SearchInput = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SearchInput
