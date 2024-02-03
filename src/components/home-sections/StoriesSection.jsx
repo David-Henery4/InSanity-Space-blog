@@ -1,32 +1,15 @@
-import { HeadingSection, PostsContainer, SearchAndFilters } from "../stories-section-components"
-import { client } from "../../../sanity/lib/client"
+import {
+  HeadingSection,
+  PostsContainer,
+  SearchAndFilters,
+} from "../stories-section-components";
+import { client } from "../../../sanity/lib/client";
+import { Suspense } from "react";
+import getPosts from "@/utils/getPosts";
 
-
-const StoriesSection = async (props) => {
-  console.log(props)
-  const posts = await client.fetch(
-    `*[_type == "post"] | order(publishedAt desc){
-      _id,
-      slug,
-      title,
-      mainImage,
-      publishedAt,
-      categories[]->,
-      author->,
-      body[]{
-    ...,
-    markDefs[]{
-      ...,
-      _type == "internalLink" => { "href": "/"+ @.reference-> slug.current },
-    },
-    children,
-    _type,
-    style,
-    _key
-  },
-  postDescription
-    }`
-  );
+const StoriesSection = async ({id}) => {
+  console.log("storiesSectionId: ", id)
+  const posts = await getPosts()
   // console.log(posts)
   return (
     <section
@@ -37,9 +20,12 @@ const StoriesSection = async (props) => {
 
       <SearchAndFilters posts={posts} />
 
-      <PostsContainer posts={posts} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <PostsContainer posts={posts} />
+      </Suspense>
+
     </section>
   );
-}
+};
 
-export default StoriesSection
+export default StoriesSection;
