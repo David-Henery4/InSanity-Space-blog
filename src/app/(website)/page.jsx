@@ -13,7 +13,7 @@ export default function Home({searchParams}) {
       {/* <Navbar /> */}
       <Hero />
       <FeaturedStories />
-      <StoriesSection id={searchParams?.id} />
+      <StoriesSection id={searchValues} />
     </main>
   );
 }

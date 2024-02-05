@@ -9,7 +9,7 @@ import getPosts from "@/utils/getPosts";
 
 const StoriesSection = async ({id}) => {
   console.log("storiesSectionId: ", id)
-  const posts = await getPosts()
+  const posts = await getPosts(id)
   // console.log(posts)
   return (
     <section
