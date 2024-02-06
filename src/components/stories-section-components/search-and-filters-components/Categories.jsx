@@ -11,7 +11,7 @@ const Categories = async () => {
         CATEGORIES
       </h3>
       <div className="flex flex-wrap justify-center items-start mt-5 gap-3 lgLap:justify-start">
-        {[{_id: 1, title: "All Categories"}, ...categories].map((category) => {
+        {categories?.map((category) => {
           //
           return (
             <Tag key={category._id}>
