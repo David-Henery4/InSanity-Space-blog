@@ -14,6 +14,10 @@ export async function generateStaticParams () {
   }));
 }
 
+const wait = async (n) => {
+  return new Promise((resolve) => setTimeout(resolve, n));
+};
+
 const SinglePostPage = async ({params: {slug}}) => {
   // console.log(slug)
   const postInfo =
@@ -33,6 +37,7 @@ const SinglePostPage = async ({params: {slug}}) => {
     _key
   }
 }`);
+  await wait(20000);
   // console.log("postInfo",postInfo)
   //
   return (
