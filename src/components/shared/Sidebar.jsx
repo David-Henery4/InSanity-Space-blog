@@ -43,7 +43,7 @@ const Sidebar = () => {
                 setIsSidebarOpen(false)
               }}
             >
-              <Link href={navItem.path}>{navItem.label}</Link>
+              <Link href={`/${navItem.path}`}>{navItem.label}</Link>
             </li>
           );
         })}

@@ -12,7 +12,7 @@ export default async function Home({searchParams}) {
   const searchValues = searchParams?.id?.split(",")
   console.log(searchValues)
   // console.log("id", uuidv4())
-  await wait(20000)
+  // await wait(20000)
   // 
   return (
     <main

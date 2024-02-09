@@ -11,6 +11,10 @@ const SearchInput = () => {
     searchValue.trim().length <= 0 ? setIsLabelActive(false) : setIsLabelActive(true)
   }
   //
+  const handleSearchParams = () => {
+    
+  }
+  //
   return (
     <div className="w-full flex justify-start items-center bg-darkGrey px-4 py-3 rounded-md">
       <SearchIcon className="flex-none" />

@@ -34,7 +34,7 @@ const getCustomCategoryPost = (categories) => {
   return `*[_type == "post" && count(categories[@->title in [${withAddedQuoteMarks}]]) > 0]${defaultPostFilter}`;
 };
 
-const getPosts = async (id = false) => {
+const getPosts = async (id = false, search = false) => {
   try {
     const allPostsData = await client.fetch(id ? getCustomCategoryPost(id) : defaultQuery);
     const res = await allPostsData;

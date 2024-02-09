@@ -37,7 +37,7 @@ const SinglePostPage = async ({params: {slug}}) => {
     _key
   }
 }`);
-  await wait(20000);
+  // await wait(20000);
   // console.log("postInfo",postInfo)
   //
   return (
