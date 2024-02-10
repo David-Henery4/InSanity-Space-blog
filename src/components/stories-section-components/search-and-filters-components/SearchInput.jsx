@@ -17,7 +17,9 @@ const SearchInput = () => {
   //
   const handleSearchParams = () => {
     const trimmedSearchValue = searchValue.trim()
-    router.push(`/?${createQueryString("search", trimmedSearchValue)}#stories`);
+    router.push(
+      `/?${createQueryString("search", trimmedSearchValue)}#posts-container`
+    );
   };
   //
   return (

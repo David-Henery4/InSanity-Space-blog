@@ -5,18 +5,16 @@ const wait = async (n) => {
   return new Promise(resolve => setTimeout(resolve, n))
 }
 
-const PostsContainer = async ({ id }) => {
-  console.log("posts container component", id);
+const PostsContainer = async ({ id, searchQuery }) => {
+  console.log("posts container component", searchQuery);
   //
-  const posts = await getPosts(id);
+  const posts = await getPosts(id, searchQuery);
   // await wait(20000)
   //
   return (
-    <div className="w-full mt-10 grid grid-cols-postsMob gap-y-8 gap-x-5 tab:grid-cols-[auto] lgLap:col-start-1 lgLap:col-end-9 lgLap:row-start-2 lgLap:row-end-3 lgLap:mt-0">
+    <div className="w-full mt-4 grid grid-cols-postsMob gap-y-8 gap-x-5 tab:grid-cols-[auto]">
       {posts?.map((post) => {
-        return (
-        <BlogCard key={post._id} {...post} />
-        )
+        return <BlogCard key={post._id} {...post} />;
       })}
     </div>
   );

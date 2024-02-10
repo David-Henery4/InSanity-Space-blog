@@ -10,7 +10,7 @@ const wait = async (n) => {
 export default async function Home({searchParams}) {
   console.log("searchParams: ",searchParams)
   const searchValues = searchParams?.id?.split(",")
-  console.log(searchValues)
+  console.log("searchParamsValues: ", searchValues);
   // console.log("id", uuidv4())
   // await wait(20000)
   // 
@@ -22,7 +22,7 @@ export default async function Home({searchParams}) {
       {/* <Navbar /> */}
       <Hero />
       <FeaturedStories />
-      <StoriesSection id={searchValues} />
+      <StoriesSection id={searchValues} searchQuery={searchParams?.search} />
     </main>
   );
 }
