@@ -1,38 +1,40 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useCallback } from "react";
+import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 
 const Tag = ({ children, isCard = false }) => {
+  const {createQueryString, router} = useCreateQueryString()
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
-  const router = useRouter();
+  // const router = useRouter();
   const isTagActive = id ? id?.includes(children) : null;
   //
-  const createQueryString = useCallback(
-    (name, value) => {
-      //
-      const params = new URLSearchParams(searchParams);
-      if (!id) {
-        params.set(name, value);
-        return params.toString();
-      }
-      //
-      if (id.includes(value)) {
-        const valuesRay = id.split(",").filter((v) => v !== value);
-        if (!valuesRay.length && name === "id") {
-          params.delete(name);
-          return params.toString();
-        }
-        params.set(name, valuesRay);
-        return params.toString();
-      }
-      const combinedValues = `${id},${value}`;
-      params.set(name, combinedValues);
-      return params.toString();
-    },
-    [searchParams]
-  );
+  // const createQueryString = useCallback(
+  //   (name, value) => {
+  //     //
+  //     const params = new URLSearchParams(searchParams);
+  //     if (!id) {
+  //       params.set(name, value);
+  //       return params.toString();
+  //     }
+  //     //
+  //     if (id.includes(value)) {
+  //       const valuesRay = id.split(",").filter((v) => v !== value);
+  //       if (!valuesRay.length && name === "id") {
+  //         params.delete(name);
+  //         return params.toString();
+  //       }
+  //       params.set(name, valuesRay);
+  //       return params.toString();
+  //     }
+  //     const combinedValues = `${id},${value}`;
+  //     params.set(name, combinedValues);
+  //     return params.toString();
+  //   },
+  //   [searchParams]
+  // );
   //
   return (
     <div

@@ -1,25 +1,37 @@
-"use client"
+"use client";
 import { SearchIcon } from "../../../../public/assets";
 import { useState } from "react";
+import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 const SearchInput = () => {
   console.log("Search Input");
+  const { createQueryString, router } = useCreateQueryString();
   const [searchValue, setSearchValue] = useState("");
   const [isLabelActive, setIsLabelActive] = useState(false);
   //
   const checkSearchValue = () => {
-    searchValue.trim().length <= 0 ? setIsLabelActive(false) : setIsLabelActive(true)
-  }
+    searchValue.trim().length <= 0
+      ? setIsLabelActive(false)
+      : setIsLabelActive(true);
+  };
   //
   const handleSearchParams = () => {
-    
-  }
+    const trimmedSearchValue = searchValue.trim()
+    router.push(`/?${createQueryString("search", trimmedSearchValue)}#stories`);
+  };
   //
   return (
-    <div className="w-full flex justify-start items-center bg-darkGrey px-4 py-3 rounded-md">
-      <SearchIcon className="flex-none" />
-      <div className="relative w-full">
-        <label htmlFor="search-input" className={`absolute left-3 pointer-events-none ${isLabelActive && "opacity-0"}`}>
+    <div className="w-full flex justify-start items-center bg-darkGrey rounded-md">
+      <div className="p-3 hover:cursor-pointer" onClick={handleSearchParams}>
+        <SearchIcon className="flex-none" />
+      </div>
+      <div className="relative w-full pr-3 py-3">
+        <label
+          htmlFor="search-input"
+          className={`absolute left-3 pointer-events-none ${
+            isLabelActive && "opacity-0"
+          }`}
+        >
           Search
         </label>
         <input
@@ -28,13 +40,14 @@ const SearchInput = () => {
           type="text"
           value={searchValue}
           onChange={(e) => setSearchValue(e.target.value)}
-          className="bg-darkGrey w-full px-3 outline-none"
+          className="bg-darkGrey w-full pl-3 outline-none"
           onBlur={() => checkSearchValue()}
           onFocus={() => setIsLabelActive(true)}
+          onKeyDown={(e) => e.key === "Enter" ? handleSearchParams() : null}
         />
       </div>
     </div>
   );
 };
 
-export default SearchInput
+export default SearchInput;
