@@ -1,5 +1,6 @@
 import { BlogCard } from "./posts-container-components"
 import getPosts from "@/utils/getPosts";
+import getPostsFromQuery from "@/utils/getPostsFromQuery";
 
 const wait = async (n) => {
   return new Promise(resolve => setTimeout(resolve, n))
@@ -8,7 +9,10 @@ const wait = async (n) => {
 const PostsContainer = async ({ id, searchQuery }) => {
   console.log("posts container component", searchQuery);
   //
-  const posts = await getPosts(id, searchQuery);
+  let posts = []
+  id || searchQuery
+    ? (posts = await getPostsFromQuery(id, searchQuery))
+    : posts = await getPosts();
   // await wait(20000)
   //
   return (
