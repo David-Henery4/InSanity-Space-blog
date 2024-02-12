@@ -1,5 +1,7 @@
 import { client } from "../../../../../sanity/lib/client"
 import { PostBody, PostHeader } from "@/components/single-page-components";
+import getSinglePost from "@/utils/getSinglePost";
+import { revalidateTag } from "next/cache";
 
 
 export async function generateStaticParams () {
@@ -20,23 +22,8 @@ const wait = async (n) => {
 
 const SinglePostPage = async ({params: {slug}}) => {
   // console.log(slug)
-  const postInfo =
-    await client.fetch(`*[_type == "post" && slug.current == "${slug}"][0]{
-  ...,
-  author->,
-  categories[]->,
-  body[]{
-    ...,
-    markDefs[]{
-      ...,
-      _type == "internalLink" => { "href": "/"+ @.reference-> slug.current },
-    },
-    children,
-    _type,
-    style,
-    _key
-  }
-}`);
+  const postInfo = await getSinglePost(slug)
+  revalidateTag("singlePost");
   // await wait(20000);
   // console.log("postInfo",postInfo)
   //

@@ -5,7 +5,9 @@ import defaultPostFilter from "./filterOptions/defaultPostFilter";
 const getPosts = async () => {
   try {
     const allPostsData = await client.fetch(
-      `*[_type == "post"] | order(publishedAt desc)${defaultPostFilter}`
+      `*[_type == "post"] | order(publishedAt desc)${defaultPostFilter}`,{}, {
+        next:{tags: ["allPosts"]}
+      }
     );
     const res = await allPostsData;
     return res;
