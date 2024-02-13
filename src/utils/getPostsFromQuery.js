@@ -1,5 +1,7 @@
+"use server"
 import { client } from "../../sanity/lib/client";
 import defaultPostFilter from "./filterOptions/defaultPostFilter";
+import { revalidateTag } from "next/cache";
 
 const getPostsFromCategories = (categories) => {
   return `&& count(categories[@->title in [${categories?.map(
@@ -19,8 +21,13 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
       const categoryFilteredPosts = await client.fetch(
         `*[_type == "post" ${getPostsFromCategories(
           categories
-        )} ] | order(publishedAt desc)${defaultPostFilter}`
+        )} ] | order(publishedAt desc)${defaultPostFilter}`,
+        {},
+        {
+          next: { tags: ["allQueriedPosts"] },
+        }
       );
+      revalidateTag("allQueriedPosts");
       const res = await categoryFilteredPosts;
       return res;
     }
@@ -31,8 +38,13 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
       const searchQueriedPosts = await client.fetch(
         `*[_type == "post" ${getPostsFromSearchQuery(
           searchQuery
-        )} ] | order(publishedAt desc)${defaultPostFilter}`
+        )} ] | order(publishedAt desc)${defaultPostFilter}`,
+        {},
+        {
+          next: { tags: ["allQueriedPosts"] },
+        }
       );
+      revalidateTag("allQueriedPosts");
       const res = await searchQueriedPosts;
       return res;
     }
@@ -44,8 +56,13 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
         categories
       )} ${getPostsFromSearchQuery(
         searchQuery
-      )} ] | order(publishedAt desc)${defaultPostFilter}`
+      )} ] | order(publishedAt desc)${defaultPostFilter}`,
+      {},
+      {
+        next: { tags: ["allQueriedPosts"] },
+      }
     );
+    revalidateTag("allQueriedPosts");
     const res = await FilteredAndSearchedPosts;
     return res;
     //

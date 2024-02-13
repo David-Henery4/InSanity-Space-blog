@@ -1,5 +1,7 @@
+"use server"
 import { client } from "../../sanity/lib/client"
 import singlePostFilter from "./filterOptions/singlePageFilter";
+// import { revalidateTag } from "next/cache";
 
 const getSinglePost = async (slug) => {
   try {
@@ -10,6 +12,7 @@ const getSinglePost = async (slug) => {
         next: { tags: ["singlePost"] },
       }
     );
+    // revalidateTag("singlePost");
     const res = await singlePost
     return res
   } catch (error) {

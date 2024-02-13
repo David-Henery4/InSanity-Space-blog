@@ -1,5 +1,7 @@
+"use server"
 import { client } from "../../sanity/lib/client";
 import defaultPostFilter from "./filterOptions/defaultPostFilter";
+import { revalidateTag } from "next/cache";
 
 
 const getPosts = async () => {
@@ -9,6 +11,7 @@ const getPosts = async () => {
         next:{tags: ["allPosts"]}
       }
     );
+    revalidateTag("allPosts");
     const res = await allPostsData;
     return res;
   } catch (error) {

@@ -1,7 +1,7 @@
 import { BlogCard } from "./posts-container-components"
 import getPosts from "@/utils/getPosts";
 import getPostsFromQuery from "@/utils/getPostsFromQuery";
-import { revalidateTag } from "next/cache";
+// import { revalidateTag } from "next/cache";
 
 const wait = async (n) => {
   return new Promise(resolve => setTimeout(resolve, n))
@@ -14,7 +14,7 @@ const PostsContainer = async ({ id, searchQuery }) => {
   id || searchQuery
     ? (posts = await getPostsFromQuery(id, searchQuery))
     : posts = await getPosts();
-  revalidateTag("allPosts");
+  // revalidateTag("allPosts");
   // await wait(20000)
   //
   return (

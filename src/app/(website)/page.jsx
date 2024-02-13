@@ -1,19 +1,24 @@
+// export const dynamic = "force-static"; // might not use
 // import Image from 'next/image'
 import { v4 as uuidv4 } from "uuid";
-import { Navbar } from "@/components/shared"
-import { Hero, FeaturedStories, StoriesSection } from "@/components/home-sections"
+import { Navbar } from "@/components/shared";
+import {
+  Hero,
+  FeaturedStories,
+  StoriesSection,
+} from "@/components/home-sections";
 
 const wait = async (n) => {
   return new Promise((resolve) => setTimeout(resolve, n));
 };
 
-export default async function Home({searchParams}) {
-  console.log("searchParams: ",searchParams)
-  const searchValues = searchParams?.id?.split(",")
+export default async function Home({ searchParams }) {
+  console.log("searchParams: ", searchParams);
+  const searchValues = searchParams?.id?.split(",");
   console.log("searchParamsValues: ", searchValues);
   // console.log("id", uuidv4())
   // await wait(20000)
-  // 
+  //
   return (
     <main
       key={uuidv4()}
