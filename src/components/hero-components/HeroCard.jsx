@@ -3,18 +3,10 @@ import Link from "next/link";
 // import { mainStoryImg } from "../../../public/assets/images";
 import { client } from "../../../sanity/lib/client";
 import { formatDate, urlFor } from "@/helpers";
+import getHeroStory from "@/utils/getHeroStory";
 
 const HeroCard = async () => {
-  const mainStory =
-    await client.fetch(`*[_type == "post" && mainStory == true][0]{
-  _id,
-  title,
-  author->,
-  publishedAt,
-  mainImage,
-  postDescription,
-  slug
-}`);
+  const mainStory = await getHeroStory()
   //
   return (
     <div className="w-full xLgMob:flex-[4]">

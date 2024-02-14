@@ -1,10 +1,9 @@
 import { Tag } from "@/components/shared";
 import { client } from "../../../../sanity/lib/client";
+import getAllCategories from "@/utils/getAllCategories";
 
 const Categories = async () => {
-  const categories = await client.fetch(
-    `*[_type == "category"]`
-  );
+  const categories = await getAllCategories()
   return (
     <div className="mt-8">
       <h3 className="text-sm font-semibold text-center lgLap:text-left">

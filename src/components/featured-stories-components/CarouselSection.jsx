@@ -7,21 +7,10 @@ import {
 } from "@/components/ui/carousel";
 import { FeaturedCard } from "./carousel-components";
 import { client } from "../../../sanity/lib/client";
+import getFeaturedStories from "@/utils/getFeaturedStories";
 
 const CarouselSection = async () => {
-  const featuredStories = await client.fetch(
-    `*[_type == "post" && featuredPost == true]{
-  _id,
-  title,
-  body,
-  author->,
-  publishedAt,
-  categories[]->,
-  mainImage,
-  postDescription,
-  slug
-}`
-  );
+  const featuredStories = await getFeaturedStories()
   //
   return (
     <div className="w-full mt-4">
