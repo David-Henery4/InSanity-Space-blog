@@ -7,8 +7,10 @@ import { revalidateTag } from "next/cache";
 const getPosts = async () => {
   try {
     const allPostsData = await client.fetch(
-      `*[_type == "post"] | order(publishedAt desc)${defaultPostFilter}`,{}, {
-        next:{tags: ["allPosts"]}
+      `*[_type == "post"] | order(publishedAt desc) ${defaultPostFilter}`,
+      {},
+      {
+        next: { tags: ["allPosts"] },
       }
     );
     revalidateTag("allPosts");

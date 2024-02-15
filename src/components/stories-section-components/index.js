@@ -1,11 +1,9 @@
 import HeadingSection from "./HeadingSection";
-import PostsContainer from "./PostsContainer";
 import SearchAndFilters from "./SearchAndFilters";
-import SearchQueryIndicator from "./SearchQueryIndicator";
+import PostsSection from "./PostsSection";
 
 export {
-  PostsContainer,
   SearchAndFilters,
   HeadingSection,
-  SearchQueryIndicator,
+  PostsSection,
 }
