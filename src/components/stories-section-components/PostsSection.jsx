@@ -8,7 +8,11 @@ import {
 import getPosts from "@/utils/getPosts";
 import getPostsFromQuery from "@/utils/getPostsFromQuery";
 
-const PostsSection = async ({ id, searchQuery }) => {
+const PostsSection = async ({ searchParams }) => {
+  const numOfPostsShown = 5;
+  const searchQuery = searchParams?.search
+  const id = searchParams?.id?.split(",");
+  //
   // let posts = [];
   // id || searchQuery
   //   ? (posts = await getPostsFromQuery(id, searchQuery))
@@ -29,9 +33,16 @@ const PostsSection = async ({ id, searchQuery }) => {
           </div>
         }
       >
-        <PostsContainer id={id} searchQuery={searchQuery} />
+        <PostsContainer
+          numOfPostsShown={numOfPostsShown}
+          id={id}
+          searchQuery={searchQuery}
+        />
       </Suspense>
-      <PostsPagination id={id} searchQuery={searchQuery} />
+      <PostsPagination
+        numOfPostsShown={numOfPostsShown}
+        searchParams={searchParams}
+      />
     </div>
   );
 };

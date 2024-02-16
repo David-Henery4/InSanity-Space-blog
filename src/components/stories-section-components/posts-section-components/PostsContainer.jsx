@@ -7,13 +7,13 @@ const wait = async (n) => {
   return new Promise((resolve) => setTimeout(resolve, n));
 };
 
-const PostsContainer = async ({ id, searchQuery }) => {
+const PostsContainer = async ({ id, searchQuery, numOfPostsShown }) => {
   console.log("posts container component", searchQuery);
   //
   let posts = [];
   id || searchQuery
-    ? (posts = await getPostsFromQuery(id, searchQuery))
-    : (posts = await getPosts());
+    ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
+    : (posts = await getPosts(numOfPostsShown));
   // revalidateTag("allPosts");
   // await wait(20000)
   //

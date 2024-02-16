@@ -4,10 +4,10 @@ import defaultPostFilter from "./filterOptions/defaultPostFilter";
 import { revalidateTag } from "next/cache";
 
 
-const getPosts = async () => {
+const getPosts = async (numOfPostsShown) => {
   try {
     const allPostsData = await client.fetch(
-      `*[_type == "post"] | order(publishedAt desc) ${defaultPostFilter}`,
+      `*[_type == "post"] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`,
       {},
       {
         next: { tags: ["allPosts"] },

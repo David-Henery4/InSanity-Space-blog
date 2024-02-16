@@ -1,8 +1,14 @@
+// "use client"
 import getPosts from "@/utils/getPosts";
 import getPostsFromQuery from "@/utils/getPostsFromQuery";
+import { client } from "../../../../sanity/lib/client";
+import { NextBtn, PrevBtn } from "./pagination-components";
 
-const PostsPagination = ({id, searchQuery}) => {
-  const textArray = Array.from({ length: 17 }, (e, i, ray) => {
+const PostsPagination = ({ numOfPostsShown, searchParams }) => {
+  // numOfPages is temp, need values from the posts query result
+  // const numOfPages = await client.fetch(`count(*[_type == "post"])`); 
+  // const totalNumOfPages = Math.ceil(numOfPages / numOfPostsShown);
+  const textArray = Array.from({ length: 4 }, (e, i, ray) => {
     return {
       id: i,
       page: i + 1,
@@ -10,9 +16,7 @@ const PostsPagination = ({id, searchQuery}) => {
   });
   return (
     <div className="flex justify-center items-center gap-8 mt-12 text-sm">
-      <button className="min-w-[80px] p-2 border-2 border-white rounded-sm hover:bg-white hover:text-black active:bg-opacity-0 active:text-white">
-        Previous
-      </button>
+      <PrevBtn searchParams={searchParams} />
       <ul className="flex justify-center items-center gap-4">
         {textArray.map((item) => {
           return (
@@ -22,9 +26,7 @@ const PostsPagination = ({id, searchQuery}) => {
           );
         })}
       </ul>
-      <button className="min-w-[80px] p-2 border-2 border-white rounded-sm hover:bg-white hover:text-black active:bg-opacity-0 active:text-white">
-        Next
-      </button>
+      <NextBtn searchParams={searchParams} />
     </div>
   );
 };

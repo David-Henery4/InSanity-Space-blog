@@ -13,7 +13,7 @@ const getPostsFromSearchQuery = (searchQuery) => {
   return `&& [title, postDescription, author->.name, pt::text(body) ] match ["${searchQuery}"]`
 };
 
-const getPostsFromQuery = async (categories = false, searchQuery = false) => {
+const getPostsFromQuery = async (categories = false, searchQuery = false, numOfPostsShown) => {
   try {
     
     // Get Posts with categories ONLY
@@ -21,7 +21,7 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
       const categoryFilteredPosts = await client.fetch(
         `*[_type == "post" ${getPostsFromCategories(
           categories
-        )} ] | order(publishedAt desc)${defaultPostFilter}`,
+        )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`,
         {},
         {
           next: { tags: ["allQueriedPosts"] },
@@ -38,7 +38,7 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
       const searchQueriedPosts = await client.fetch(
         `*[_type == "post" ${getPostsFromSearchQuery(
           searchQuery
-        )} ] | order(publishedAt desc)${defaultPostFilter}`,
+        )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`,
         {},
         {
           next: { tags: ["allQueriedPosts"] },
@@ -56,7 +56,7 @@ const getPostsFromQuery = async (categories = false, searchQuery = false) => {
         categories
       )} ${getPostsFromSearchQuery(
         searchQuery
-      )} ] | order(publishedAt desc)${defaultPostFilter}`,
+      )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`,
       {},
       {
         next: { tags: ["allQueriedPosts"] },

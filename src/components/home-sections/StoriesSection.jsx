@@ -4,8 +4,9 @@ import {
   PostsSection
 } from "../stories-section-components";
 
-const StoriesSection = ({ id, searchQuery }) => {
-  //
+const StoriesSection = ({ searchParams }) => {
+  //searchQuery = searchParams?.search
+  // id = searchParams?.id?.split(",");
   return (
     <section
       className="w-full pt-8 grid gap-y-11 lgLap:grid-cols-postsSectionLap lgLap:gap-x-8 lgLap:gap-y-28"
@@ -15,8 +16,9 @@ const StoriesSection = ({ id, searchQuery }) => {
 
       <SearchAndFilters />
 
-      <PostsSection id={id} searchQuery={searchQuery} />
-
+      <PostsSection
+        searchParams={searchParams}
+      />
     </section>
   );
 };
