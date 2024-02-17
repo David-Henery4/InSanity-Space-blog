@@ -15,8 +15,8 @@ const PostsSection = async ({ searchParams }) => {
   //
   // let posts = [];
   // id || searchQuery
-  //   ? (posts = await getPostsFromQuery(id, searchQuery))
-  //   : (posts = await getPosts());
+  //   ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
+  //   : (posts = await getPosts(numOfPostsShown));
   return (
     <div
       id="posts-container"
@@ -37,6 +37,7 @@ const PostsSection = async ({ searchParams }) => {
           numOfPostsShown={numOfPostsShown}
           id={id}
           searchQuery={searchQuery}
+          // posts={posts}
         />
       </Suspense>
       <PostsPagination

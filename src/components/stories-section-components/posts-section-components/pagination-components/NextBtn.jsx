@@ -14,7 +14,7 @@ const NextBtn = ({ searchParams }) => {
         },
         hash: "posts-container",
       }}
-      className="min-w-[80px] p-2 border-2 border-white rounded-sm hover:bg-white hover:text-black active:bg-opacity-0 active:text-white"
+      className="min-w-[80px] p-2 border-2 border-white rounded-sm text-center hover:bg-white hover:text-black active:bg-opacity-0 active:text-white"
     >
       Next
     </Link>
