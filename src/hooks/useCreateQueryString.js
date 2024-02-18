@@ -19,6 +19,8 @@ const useCreateQueryString = () => {
     const previousValues = params.get(name)
     const combinedValues = `${previousValues},${value}`
     //
+    params.delete("page")
+    //
     if (name === "search"){
       return handleTextSearch(name, value, params)
     }

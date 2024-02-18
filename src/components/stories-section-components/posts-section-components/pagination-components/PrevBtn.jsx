@@ -28,7 +28,7 @@ const PrevBtn = ({ searchParams }) => {
     <Link
       href={removePageQuery()}
       className={`min-w-[80px] p-2 border-2 border-white rounded-sm text-center hover:bg-white hover:text-black active:bg-opacity-0 active:text-white ${
-        +searchParams?.page <= 1 || !+searchParams?.page && "opacity-0 pointer-events-none"
+        +searchParams?.page <= 1 || !+searchParams?.page ? "opacity-0 pointer-events-none" : ""
       } `}
     >
       Previous
