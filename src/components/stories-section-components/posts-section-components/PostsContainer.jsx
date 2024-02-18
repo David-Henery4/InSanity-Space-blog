@@ -11,11 +11,23 @@ const PostsContainer = async ({ id, searchQuery, numOfPostsShown }) => {
   console.log("posts container component", searchQuery);
   //
   let posts = [];
-  id || searchQuery
-    ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
-    : (posts = await getPosts(numOfPostsShown));
+  // id || searchQuery
+  //   ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
+  //   : (posts = await getPosts(numOfPostsShown));
   // revalidateTag("allPosts");
   // await wait(20000)
+  //
+  if (id || searchQuery) {
+    const { queriedPostsList } = await getPostsFromQuery(
+      id,
+      searchQuery,
+      numOfPostsShown
+    );
+    posts = queriedPostsList;
+  } else {
+    const { postsList } = await getPosts(numOfPostsShown);
+    posts = postsList;
+  }
   //
   return (
     <div className="w-full mt-4 grid grid-cols-postsMob gap-y-8 gap-x-5 tab:grid-cols-[auto]">

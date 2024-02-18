@@ -13,8 +13,16 @@ const getPosts = async (numOfPostsShown) => {
         next: { tags: ["allPosts"] },
       }
     );
+    const tempData = await client.fetch(`{
+      "postsList": *[_type == "post"] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter},
+      "totalPosts": count(*[_type == "post"] | order(publishedAt desc) ${defaultPostFilter})
+    }`, {},
+      {
+        next: { tags: ["allPosts"] },
+      });
+    // console.log(tempData)
     revalidateTag("allPosts");
-    const res = await allPostsData;
+    const res = await tempData;
     return res;
   } catch (error) {
     console.log(error);

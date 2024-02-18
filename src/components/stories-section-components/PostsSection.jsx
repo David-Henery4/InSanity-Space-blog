@@ -10,7 +10,7 @@ import getPostsFromQuery from "@/utils/getPostsFromQuery";
 
 const PostsSection = async ({ searchParams }) => {
   const numOfPostsShown = 5;
-  const searchQuery = searchParams?.search
+  const searchQuery = searchParams?.search;
   const id = searchParams?.id?.split(",");
   //
   // let posts = [];
@@ -41,6 +41,8 @@ const PostsSection = async ({ searchParams }) => {
         />
       </Suspense>
       <PostsPagination
+        id={id}
+        searchQuery={searchQuery}
         numOfPostsShown={numOfPostsShown}
         searchParams={searchParams}
       />

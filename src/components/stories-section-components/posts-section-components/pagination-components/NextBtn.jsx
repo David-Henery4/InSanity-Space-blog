@@ -1,10 +1,11 @@
 import Link from "next/link"
 
 
-const NextBtn = ({ searchParams }) => {
+const NextBtn = ({ searchParams, totalNumOfPages }) => {
   console.log("PostsPagination: ", searchParams);
+  console.log("PostsPagination/totalPAGES: ", totalNumOfPages);
   //
-  let tempPageNumber = searchParams?.page ? +searchParams?.page: 1;
+  let tempPageNumber = searchParams?.page ? +searchParams?.page : 1;
   return (
     <Link
       href={{
@@ -14,7 +15,9 @@ const NextBtn = ({ searchParams }) => {
         },
         hash: "posts-container",
       }}
-      className="min-w-[80px] p-2 border-2 border-white rounded-sm text-center hover:bg-white hover:text-black active:bg-opacity-0 active:text-white"
+      className={`min-w-[80px] p-2 border-2 border-white rounded-sm text-center hover:bg-white hover:text-black active:bg-opacity-0 active:text-white ${
+        totalNumOfPages <= 1 || searchParams?.page >= totalNumOfPages ? "opacity-0 pointer-events-none": ""
+      }`}
     >
       Next
     </Link>
