@@ -7,15 +7,20 @@ const wait = async (n) => {
   return new Promise((resolve) => setTimeout(resolve, n));
 };
 
-const PostsContainer = async ({ id, searchQuery, numOfPostsShown }) => {
-  console.log("posts container component", searchQuery);
-  //
+// id || searchQuery
+//   ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
+//   : (posts = await getPosts(numOfPostsShown));
+// revalidateTag("allPosts");
+// await wait(20000)
+
+const PostsContainer = async ({ searchParams, numOfPostsShown }) => {
+  const searchQuery = searchParams?.search;
+  const id = searchParams?.id?.split(",");
+  const currentPageNumber = +searchParams?.page || 1
+  console.log("posts container, page num: ", currentPageNumber)
   let posts = [];
-  // id || searchQuery
-  //   ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
-  //   : (posts = await getPosts(numOfPostsShown));
-  // revalidateTag("allPosts");
-  // await wait(20000)
+  //
+  console.log("posts container component", searchQuery);
   //
   if (id || searchQuery) {
     const { queriedPostsList } = await getPostsFromQuery(

@@ -4,7 +4,10 @@ import getPostsFromQuery from "@/utils/getPostsFromQuery";
 import { client } from "../../../../sanity/lib/client";
 import { NextBtn, PrevBtn, PageNumbersList } from "./pagination-components";
 
-const PostsPagination = async ({ numOfPostsShown, searchParams, id, searchQuery }) => {
+const PostsPagination = async ({ numOfPostsShown, searchParams }) => {
+  const searchQuery = searchParams?.search;
+  const id = searchParams?.id?.split(",");
+  //
   let totalPostsAmount = 0;
   if (id || searchQuery) {
     const { queriedPostsTotal } = await getPostsFromQuery(

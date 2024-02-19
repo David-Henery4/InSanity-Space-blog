@@ -1,22 +1,13 @@
 import { Suspense } from "react";
-import { client } from "../../../sanity/lib/client";
 import {
   PostsContainer,
   PostsPagination,
   SearchQueryIndicator,
 } from "./posts-section-components";
-import getPosts from "@/utils/getPosts";
-import getPostsFromQuery from "@/utils/getPostsFromQuery";
 
 const PostsSection = async ({ searchParams }) => {
   const numOfPostsShown = 5;
-  const searchQuery = searchParams?.search;
-  const id = searchParams?.id?.split(",");
   //
-  // let posts = [];
-  // id || searchQuery
-  //   ? (posts = await getPostsFromQuery(id, searchQuery, numOfPostsShown))
-  //   : (posts = await getPosts(numOfPostsShown));
   return (
     <div
       id="posts-container"
@@ -35,14 +26,10 @@ const PostsSection = async ({ searchParams }) => {
       >
         <PostsContainer
           numOfPostsShown={numOfPostsShown}
-          id={id}
-          searchQuery={searchQuery}
-          // posts={posts}
+          searchParams={searchParams}
         />
       </Suspense>
       <PostsPagination
-        id={id}
-        searchQuery={searchQuery}
         numOfPostsShown={numOfPostsShown}
         searchParams={searchParams}
       />
