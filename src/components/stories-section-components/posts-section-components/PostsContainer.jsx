@@ -30,7 +30,10 @@ const PostsContainer = async ({ searchParams, numOfPostsShown }) => {
     );
     posts = queriedPostsList;
   } else {
-    const { postsList } = await getPosts(numOfPostsShown);
+    const { postsList } = await getPosts(
+      numOfPostsShown,
+      currentPageNumber
+    );
     posts = postsList;
   }
   //

@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-const PageNumbersList = ({ searchParams, totalNumOfPages }) => {
+const PageNumbersList = ({
+  searchParams,
+  totalNumOfPages,
+  numOfPostsShown,
+  lastItemOfPage,
+}) => {
   const textArray = Array.from({ length: totalNumOfPages }, (e, i, ray) => {
     return {
       id: i,
@@ -10,10 +15,19 @@ const PageNumbersList = ({ searchParams, totalNumOfPages }) => {
   //
   const handleSetPageNumber = (newPageNumber) => {
     const newParams = new URLSearchParams(searchParams);
-    if (newPageNumber <= 1){
-      newParams.delete("page")
+    const currPageNumber = +searchParams?.page || 1
+    const itemIndex = (+newPageNumber - currPageNumber) * numOfPostsShown - 1;
+    const lastItemId = lastItemOfPage?._id
+    const lastItemPublishedAt = lastItemOfPage?.publishedAt
+    console.log("Index: ", itemIndex);
+    console.log("lastItemId: ", lastItemId);
+    console.log("lastItemPublishedAt: ", lastItemPublishedAt);
+
+    if (newPageNumber <= 1) {
+      newParams.delete("page");
       return `/?${newParams.toString()}#posts-container`;
     }
+
     return {
       query: {
         ...searchParams,
@@ -21,7 +35,7 @@ const PageNumbersList = ({ searchParams, totalNumOfPages }) => {
       },
       hash: "posts-container",
     };
-  }
+  };
   //
   return (
     <ul className="flex justify-center items-center gap-4">
@@ -37,9 +51,7 @@ const PageNumbersList = ({ searchParams, totalNumOfPages }) => {
                 : ""
             }`}
           >
-            <Link href={handleSetPageNumber(item?.page)} >
-              {item.page}
-            </Link>
+            <Link href={handleSetPageNumber(item?.page)}>{item.page}</Link>
           </li>
         );
       })}
