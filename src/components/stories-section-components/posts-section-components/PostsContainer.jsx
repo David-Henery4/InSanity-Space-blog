@@ -17,22 +17,22 @@ const PostsContainer = async ({ searchParams, numOfPostsShown }) => {
   const searchQuery = searchParams?.search;
   const id = searchParams?.id?.split(",");
   const currentPageNumber = +searchParams?.page || 1
-  console.log("posts container, page num: ", currentPageNumber)
   let posts = [];
   //
-  console.log("posts container component", searchQuery);
+  console.log("posts container component", searchParams);
   //
   if (id || searchQuery) {
     const { queriedPostsList } = await getPostsFromQuery(
       id,
       searchQuery,
-      numOfPostsShown
+      numOfPostsShown,
+      currentPageNumber
     );
     posts = queriedPostsList;
   } else {
     const { postsList } = await getPosts(
       numOfPostsShown,
-      currentPageNumber
+      currentPageNumber,
     );
     posts = postsList;
   }

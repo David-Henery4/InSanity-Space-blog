@@ -16,20 +16,27 @@ const getPostsFromSearchQuery = (searchQuery) => {
 const getPostsFromQuery = async (
   categories = false,
   searchQuery = false,
-  numOfPostsShown
+  numOfPostsShown,
+  currentPageNumber
 ) => {
   try {
+    // Pagination using slice (For now, will try filtering)
+    const firstItem = (+currentPageNumber - 1) * +numOfPostsShown;
+    const lastItem = +currentPageNumber * +numOfPostsShown;
+    //
     // Get Posts with categories ONLY
     if (categories && !searchQuery) {
       const categoryFilteredPosts = await client.fetch(
         `{
           "queriedPostsList": *[_type == "post" ${getPostsFromCategories(
             categories
-          )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter},
+          )} ] | order(publishedAt desc) [${firstItem}...${lastItem}] ${defaultPostFilter},
           "queriedPostsTotal": count(*[_type == "post" ${getPostsFromCategories(
             categories
           )} ] | order(publishedAt desc) ${defaultPostFilter})
-        }`, {},{ next: { tags: ["allQueriedPosts"] }, }
+        }`,
+        {},
+        { next: { tags: ["allQueriedPosts"] } }
       );
       revalidateTag("allQueriedPosts");
       const res = await categoryFilteredPosts;
@@ -43,12 +50,13 @@ const getPostsFromQuery = async (
         `{
           "queriedPostsList": *[_type == "post" ${getPostsFromSearchQuery(
             searchQuery
-          )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter},
+          )} ] | order(publishedAt desc) [${firstItem}...${lastItem}] ${defaultPostFilter},
           "queriedPostsTotal": count(*[_type == "post" ${getPostsFromSearchQuery(
             searchQuery
           )} ] | order(publishedAt desc) ${defaultPostFilter})
-        }`, {},{ next: { tags: ["allQueriedPosts"] },
-        }
+        }`,
+        {},
+        { next: { tags: ["allQueriedPosts"] } }
       );
       revalidateTag("allQueriedPosts");
       const res = await searchQueriedPosts;
@@ -63,13 +71,15 @@ const getPostsFromQuery = async (
           categories
         )} ${getPostsFromSearchQuery(
         searchQuery
-      )} ] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter},
+      )} ] | order(publishedAt desc) [${firstItem}...${lastItem}] ${defaultPostFilter},
         "queriedPostsTotal": count(*[_type == "post" ${getPostsFromCategories(
           categories
         )} ${getPostsFromSearchQuery(
         searchQuery
       )} ] | order(publishedAt desc) ${defaultPostFilter})
-    }`,{},{ next: { tags: ["allQueriedPosts"] }, }
+    }`,
+      {},
+      { next: { tags: ["allQueriedPosts"] } }
     );
     //
     revalidateTag("allQueriedPosts");

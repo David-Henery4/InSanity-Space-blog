@@ -12,34 +12,16 @@ import { revalidateTag } from "next/cache";
 //   }
 // );
 
-const getPosts = async (
-  numOfPostsShown,
-  currentPageNumber = null,
-  lastPostItem
-) => {
+const getPosts = async (numOfPostsShown, currentPageNumber) => {
   try {
-    console.log("current page num in 'getPosts': ", currentPageNumber);
-    console.log("LastItem in 'getPosts': ", lastPostItem);
-    // Testing Pagination
-    let lastPublishedAtTemp = ``;
-    let lastIdAtTemp = ``;
-    // $lastPublishedAt & $lastId = variables needed
-    // Test VARIABLES
-    // $lastPublishedAt = "2023-12-12T10:33:00.000Z"
-    // $lastId = "c6a82200-1edc-48b4-8892-ff1c8aabfa00"
-    const pagString = `*[_type == "post" && (publishedAt > "2023-12-12T10:33:00.000Z"
-  || (publishedAt == "2023-12-12T10:33:00.000Z" && _id > "c6a82200-1edc-48b4-8892-ff1c8aabfa00"))] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`;
-    console.log(pagString);
-
-    // WITH QUERY STRING
-    //   const pagString = `*[_type == "post" && (publishedAt > "2023-12-12T10:33:00.000Z"
-    // || (publishedAt == "2023-12-12T10:33:00.000Z" && _id > "c6a82200-1edc-48b4-8892-ff1c8aabfa00")) && count(categories[@->title in ["Astronomy"]]) > 0 && [title, postDescription, author->.name, pt::text(body) ] match ["dust"] ]  | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter}`;
-    //   console.log(pagString);
-
     //////////////////////////////
+    // Pagination using slice (For now, will try filtering)
+    const firstItem = (+currentPageNumber - 1) * +numOfPostsShown;
+    const lastItem = +currentPageNumber * +numOfPostsShown
+    //
     const allPostsData = await client.fetch(
       `{
-      "postsList": *[_type == "post"] | order(publishedAt desc) [0...${numOfPostsShown}] ${defaultPostFilter},
+      "postsList": *[_type == "post"] | order(publishedAt desc) [${firstItem}...${lastItem}] ${defaultPostFilter},
       "totalPosts": count(*[_type == "post"] | order(publishedAt desc) ${defaultPostFilter})
     }`,
       {},

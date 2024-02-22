@@ -1,21 +1,14 @@
 // "use client"
 import getPosts from "@/utils/getPosts";
 import getPostsFromQuery from "@/utils/getPostsFromQuery";
-import { client } from "../../../../sanity/lib/client";
+// import { client } from "../../../../sanity/lib/client";
 import { NextBtn, PrevBtn, PageNumbersList } from "./pagination-components";
 
-// Variables needed for page numbered pagination:
-// [X] - $lastPublishedAt - MIGHT not need in URL
-// [X] - $lastId - MIGHT not need in URL
-
-// $Index = ($pageNumber - $currentPage) * $pageSize - 1
-//   [] - $CurrentPageNumber 
-//   [X] - $TargetPageNumber (Already handled when we click next, prev or specific page number)
-//   [X] - $pageSize = (Already hard coded) - not needed in URL
 
 const PostsPagination = async ({ numOfPostsShown, searchParams }) => {
   const searchQuery = searchParams?.search;
   const id = searchParams?.id?.split(",");
+  const currentPageNumber = +searchParams?.page || 1;
   //
   let totalPostsAmount = 0;
   let lastItemOfPage = null;
@@ -24,11 +17,15 @@ const PostsPagination = async ({ numOfPostsShown, searchParams }) => {
     const { queriedPostsTotal } = await getPostsFromQuery(
       id,
       searchQuery,
-      numOfPostsShown
+      numOfPostsShown,
+      currentPageNumber
     );
     totalPostsAmount = queriedPostsTotal;
   } else {
-    const { totalPosts, postsList } = await getPosts(numOfPostsShown);
+    const { totalPosts, postsList } = await getPosts(
+      numOfPostsShown,
+      currentPageNumber
+    );
     totalPostsAmount = totalPosts;
     lastItemOfPage = postsList[4];
   }
@@ -43,8 +40,6 @@ const PostsPagination = async ({ numOfPostsShown, searchParams }) => {
       <PageNumbersList
         searchParams={searchParams}
         totalNumOfPages={totalNumOfPages}
-        numOfPostsShown={numOfPostsShown}
-        lastItemOfPage={lastItemOfPage}
       />
       <NextBtn searchParams={searchParams} totalNumOfPages={totalNumOfPages} />
     </div>

@@ -3,8 +3,6 @@ import Link from "next/link";
 const PageNumbersList = ({
   searchParams,
   totalNumOfPages,
-  numOfPostsShown,
-  lastItemOfPage,
 }) => {
   const textArray = Array.from({ length: totalNumOfPages }, (e, i, ray) => {
     return {
@@ -15,13 +13,6 @@ const PageNumbersList = ({
   //
   const handleSetPageNumber = (newPageNumber) => {
     const newParams = new URLSearchParams(searchParams);
-    const currPageNumber = +searchParams?.page || 1
-    const itemIndex = (+newPageNumber - currPageNumber) * numOfPostsShown - 1;
-    const lastItemId = lastItemOfPage?._id
-    const lastItemPublishedAt = lastItemOfPage?.publishedAt
-    console.log("Index: ", itemIndex);
-    console.log("lastItemId: ", lastItemId);
-    console.log("lastItemPublishedAt: ", lastItemPublishedAt);
 
     if (newPageNumber <= 1) {
       newParams.delete("page");
