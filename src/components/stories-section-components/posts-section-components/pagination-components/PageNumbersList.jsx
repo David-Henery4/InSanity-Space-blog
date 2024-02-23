@@ -3,6 +3,7 @@ import Link from "next/link";
 const PageNumbersList = ({
   searchParams,
   totalNumOfPages,
+  
 }) => {
   const textArray = Array.from({ length: totalNumOfPages }, (e, i, ray) => {
     return {
