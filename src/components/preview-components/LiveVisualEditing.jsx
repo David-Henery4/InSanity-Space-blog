@@ -1,9 +1,8 @@
 "use client"
 import { useLiveMode } from "@sanity/react-loader"
-import { enableVisualEditing} from "@sanity/visual-editing"
 import { useEffect } from "react"
 import { client } from "../../../sanity/lib/client"
-// import {VisualEditing} from "next-sanity/src/" 
+import { VisualEditing } from "next-sanity"
 
 
 const stegaClient = client.withConfig({stega: true})
@@ -18,7 +17,7 @@ const LiveVisualEditing = () => {
   }, [])
   //
   return (
-    <div>LiveVisualEditing</div>
+    <VisualEditing zIndex={1000} />
   )
 }
 

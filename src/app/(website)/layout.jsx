@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "../../app/globals.css";
 import { Navbar, Sidebar } from "@/components/shared";
 import { SidebarProvider } from "@/context/sidebarContext";
+import LiveVisualEditing from "@/components/preview-components/LiveVisualEditing";
+import { draftMode } from "next/headers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default function RootLayout({ children }) {
           </SidebarProvider>
           {children}
         </div>
+        {draftMode().isEnabled && <LiveVisualEditing/>}
       </body>
     </html>
   );
