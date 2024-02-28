@@ -2,6 +2,7 @@
 import { client } from "../../sanity/lib/client";
 import defaultPostFilter from "./filterOptions/defaultPostFilter";
 import { revalidateTag } from "next/cache";
+import { loadQuery } from "../../sanity/lib/store";
 
 const getPostsFromCategories = (categories) => {
   return `&& count(categories[@->title in [${categories?.map(
@@ -26,7 +27,7 @@ const getPostsFromQuery = async (
     //
     // Get Posts with categories ONLY
     if (categories && !searchQuery) {
-      const categoryFilteredPosts = await client.fetch(
+      const categoryFilteredPosts = await loadQuery(
         `{
           "queriedPostsList": *[_type == "post" ${getPostsFromCategories(
             categories
@@ -39,14 +40,14 @@ const getPostsFromQuery = async (
         { next: { tags: ["allQueriedPosts"] } }
       );
       revalidateTag("allQueriedPosts");
-      const res = await categoryFilteredPosts;
+      const res = await categoryFilteredPosts.data;
       return res;
     }
     //
 
     // Get Posts with searchQuery ONLY
     if (searchQuery && !categories) {
-      const searchQueriedPosts = await client.fetch(
+      const searchQueriedPosts = await loadQuery(
         `{
           "queriedPostsList": *[_type == "post" ${getPostsFromSearchQuery(
             searchQuery
@@ -59,13 +60,13 @@ const getPostsFromQuery = async (
         { next: { tags: ["allQueriedPosts"] } }
       );
       revalidateTag("allQueriedPosts");
-      const res = await searchQueriedPosts;
+      const res = await searchQueriedPosts.data;
       return res;
     }
     //
 
     // Get posts from categories AND searchQuery
-    const FilteredAndSearchedPosts = await client.fetch(
+    const FilteredAndSearchedPosts = await loadQuery(
       `{
         "queriedPostsList": *[_type == "post" ${getPostsFromCategories(
           categories
@@ -83,7 +84,7 @@ const getPostsFromQuery = async (
     );
     //
     revalidateTag("allQueriedPosts");
-    const res = await FilteredAndSearchedPosts;
+    const res = await FilteredAndSearchedPosts.data;
     return res;
     //
   } catch (error) {

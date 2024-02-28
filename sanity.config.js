@@ -30,7 +30,12 @@ export default defineConfig({
     visionTool({ defaultApiVersion: apiVersion }),
     unsplashImageAsset(),
     presentationTool({
-      previewUrl: SANITY_STUDIO_PREVIEW_URL,
+      // previewUrl: SANITY_STUDIO_PREVIEW_URL,
+      previewUrl:{
+        previewMode: {
+          enable: "/api/draft"
+        }
+      },
       // icon: <RocketIcon style={{ fontSize: 72 }}></RocketIcon>,
       locate,
     }),

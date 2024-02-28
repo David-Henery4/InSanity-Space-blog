@@ -1,10 +1,11 @@
 "use server";
 import { client } from "../../sanity/lib/client";
 import { revalidateTag } from "next/cache";
+import { loadQuery } from "../../sanity/lib/store";
 
 const getFeaturedStories = async () => {
   try {
-    const featuredStories = await client.fetch(
+    const featuredStories = await loadQuery(
       `*[_type == "post" && featuredPost == true]{
   _id,
   title,
@@ -24,7 +25,7 @@ const getFeaturedStories = async () => {
       }
     );
     revalidateTag("featuredStories");
-    const res = await featuredStories;
+    const res = await featuredStories.data;
     return res;
   } catch (error) {
     console.log(error);

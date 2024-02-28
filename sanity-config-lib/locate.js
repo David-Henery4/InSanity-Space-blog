@@ -2,7 +2,8 @@ import { DocumentLocationResolver, DocumentLocationsState } from "sanity/present
 import { map, Observable } from "rxjs"
 
 export const locate = (params, context) =>  {
-  // console.log("Observable: ", Observable);
+  console.log(params);
+  console.log(context);
 
   // Set up locations for post documents
   if (params.type === "post" || params.type === "author") {
@@ -15,7 +16,10 @@ export const locate = (params, context) =>  {
       `*[_id==$id || references($id)]{_type,slug,title, name}`,
       params,
       { perspective: "previewDrafts" }, // returns a draft article if it exists
-    );
+    )
+
+    console.log(doc$)
+
 
     // Return a streaming list of locations
     // pipe the real-time results to RXJS's map function
@@ -27,7 +31,8 @@ export const locate = (params, context) =>  {
             tone: "critical",
           };
         }
-
+    
+        console.log(docs)
         //****Author URLs not needed for this project because, ****/
         //**** there arn't any author pages ****/
 
@@ -60,6 +65,11 @@ export const locate = (params, context) =>  {
             ...authorsLocations,
             ...postLocations,
 
+            postLocations.length > 0 && {
+              title: "All posts",
+              href: "/",
+            },
+
             // Add a link to the "All posts" page when there are post documents
             // No "/posts" page
             // postLocations.length > 0 && {
@@ -67,7 +77,7 @@ export const locate = (params, context) =>  {
             //   href: "/posts",
             // },
 
-            // No "/posts" page
+            // No "/authors" page
             // Add a link to the "All authors" page when there are person documents
             // authorsLocations.length > 0 && {
             //   title: "All authors",
