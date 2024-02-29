@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import {
   PostsContainer,
   PostsPagination,
@@ -45,26 +44,12 @@ const PostsSection = async ({ searchParams }) => {
     initialData = initial;
     postsGroqQueryString = postsGroqQuery;
   }
-  // Suspense won't work here now data is fetched in parent, need to change
   return (
     <div
       id="posts-container"
       className="w-full pt-8 lgLap:col-start-1 lgLap:col-end-9 lgLap:row-start-2 lgLap:row-end-3 lgLap:pt-0 "
     >
       <SearchQueryIndicator />
-
-      {/* <Suspense
-        fallback={
-          <div className="w-full h-full grid place-items-center">
-            <div className="lds-ripple">
-              <div></div>
-              <div></div>
-            </div>
-          </div>
-        }
-      >
-        <PostsContainer posts={posts} />
-      </Suspense> */}
 
       {draftMode().isEnabled ? (
         <PostPreview

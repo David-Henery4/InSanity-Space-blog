@@ -1,12 +1,12 @@
 import {
   HeadingSection,
   SearchAndFilters,
-  PostsSection
+  PostsSection,
 } from "../stories-section-components";
+import { Suspense } from "react";
 
 const StoriesSection = ({ searchParams }) => {
-  //searchQuery = searchParams?.search
-  // id = searchParams?.id?.split(",");
+  //
   return (
     <section
       className="w-full pt-8 grid gap-y-11 lgLap:grid-cols-postsSectionLap lgLap:gap-x-8 lgLap:gap-y-28"
@@ -16,9 +16,19 @@ const StoriesSection = ({ searchParams }) => {
 
       <SearchAndFilters />
 
-      <PostsSection
-        searchParams={searchParams}
-      />
+      {/* Could wrap with error boundary */}
+      <Suspense
+        fallback={
+          <div className="w-full h-full grid place-items-center">
+            <div className="lds-ripple">
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+        }
+      >
+        <PostsSection searchParams={searchParams} />
+      </Suspense>
     </section>
   );
 };

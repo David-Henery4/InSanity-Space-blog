@@ -1,14 +1,11 @@
 "use client";
 
-import { QueryResponseInitial, useQuery } from "@sanity/react-loader";
-import { SanityDocument } from "next-sanity";
+import {  useQuery } from "@sanity/react-loader";
 import { PostsContainer } from "../stories-section-components/posts-section-components";
 
 const PostPreview = ({ initial, postsGroqQuery }) => {
   const { data } = useQuery(postsGroqQuery, {}, { initial });
   //
-  // console.log(data)
-  // console.log(data.postsList);
   return data ? (
     <PostsContainer posts={data.postsList || data.queriedPostsList} />
   ) : (
