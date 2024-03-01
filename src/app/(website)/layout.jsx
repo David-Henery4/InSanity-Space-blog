@@ -13,7 +13,7 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  console.log("layout");
+  //
   return (
     <html lang="en" className="bg-veryDarkBlue text-white scroll-smooth">
       <body className={`${inter.className} `}>

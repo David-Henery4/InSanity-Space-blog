@@ -1,7 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-// import { mainStoryImg } from "../../../public/assets/images";
-import { client } from "../../../sanity/lib/client";
 import { formatDate, urlFor } from "@/helpers";
 import getHeroStory from "@/utils/getHeroStory";
 
@@ -16,8 +14,8 @@ const HeroCard = async () => {
             priority
             src={urlFor(mainStory?.mainImage).url()}
             className="w-full min-h-[320px] max-h-[325px] medTab:max-h-[450px]"
-            width={200}
-            height={200}
+            width={1200}
+            height={1200}
             alt={mainStory?.mainImage?.alt}
           />
         </Link>

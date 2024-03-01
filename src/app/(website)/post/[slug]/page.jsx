@@ -11,23 +11,16 @@ export async function generateStaticParams () {
     _id,
     slug
   }`);
-  // console.log(posts)
+  //
   return posts.map((post) => ({
     slug: post.slug.current,
     _id: post._id
   }));
 }
 
-const wait = async (n) => {
-  return new Promise((resolve) => setTimeout(resolve, n));
-};
-
 const SinglePostPage = async ({params}) => {
-  // console.log(slug)
   const { initial, postQuery } = await getSinglePost(params?.slug);
   revalidateTag("singlePost");
-  // await wait(20000);
-  // console.log("postInfo",postInfo)
   //
   return (
     draftMode().isEnabled ? (

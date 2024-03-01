@@ -14,8 +14,8 @@ const Poster = async () => {
       <Image
         className="w-full h-full absolute top-0 left-0"
         src={urlFor(posterData[0].posterImage).url()}
-        width={200}
-        height={200}
+        width={600}
+        height={600}
         priority
         alt="poster for the sub-main story"
       />

@@ -1,6 +1,6 @@
 "use client";
 import { Tooltip, Stack, Text } from "@sanity/ui";
-import { LinkIcon,LaunchIcon } from "@sanity/icons";
+import { LaunchIcon } from "@sanity/icons";
 import { useEffect, useState } from "react";
 import { client } from "../../../../../sanity/lib/client";
 

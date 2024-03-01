@@ -1,9 +1,6 @@
-import { DocumentLocationResolver, DocumentLocationsState } from "sanity/presentation"
-import { map, Observable } from "rxjs"
+import { map } from "rxjs"
 
 export const locate = (params, context) =>  {
-  console.log(params);
-  console.log(context);
 
   // Set up locations for post documents
   if (params.type === "post" || params.type === "author") {
@@ -18,9 +15,6 @@ export const locate = (params, context) =>  {
       { perspective: "previewDrafts" }, // returns a draft article if it exists
     )
 
-    console.log(doc$)
-
-
     // Return a streaming list of locations
     // pipe the real-time results to RXJS's map function
     return doc$.pipe(
@@ -32,7 +26,6 @@ export const locate = (params, context) =>  {
           };
         }
     
-        console.log(docs)
         //****Author URLs not needed for this project because, ****/
         //**** there arn't any author pages ****/
 

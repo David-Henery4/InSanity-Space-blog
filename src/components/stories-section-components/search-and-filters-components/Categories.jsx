@@ -1,5 +1,4 @@
 import { Tag } from "@/components/shared";
-import { client } from "../../../../sanity/lib/client";
 import getAllCategories from "@/utils/getAllCategories";
 
 const Categories = async () => {

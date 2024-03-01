@@ -19,8 +19,7 @@ const components = {
       </div>
     ),
     cardText: (props) => {
-      // console.log("props: ", props)
-      // console.log("child: ", props.children[0]?.type)
+      //
       return (
         <p key={props.index}>
           {props.children} 
@@ -48,7 +47,7 @@ const components = {
   },
   marks: {
     link: ({ children, value }) => {
-      // console.log("Link: ", value);
+      //
       const rel = !value.href.startsWith("/")
         ? "noreferrer noopener"
         : undefined;
@@ -64,7 +63,7 @@ const components = {
       );
     },
     internalLink: ({ children, value }) => {
-      // console.log("internalLink: ", value)
+      //
       const newPath = `/post${value.href}`;
       return (
         <a href={newPath} className="text-green underline">

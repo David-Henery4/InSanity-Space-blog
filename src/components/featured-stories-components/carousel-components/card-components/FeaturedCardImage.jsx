@@ -10,8 +10,8 @@ const FeaturedCardImage = ({slug, mainImage}) => {
           className="w-full h-[272px]"
           src={urlFor(mainImage).url()}
           alt="featured story thumbnail"
-          width={200}
-          height={200}
+          width={600}
+          height={600}
         />
       </Link>
     </div>

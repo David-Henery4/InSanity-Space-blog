@@ -11,8 +11,8 @@ const BlogCardImage = ({ slug, img }) => {
           className="w-full h-full"
           src={urlFor(img).url()}
           alt="featured story thumbnail"
-          width={200}
-          height={200}
+          width={600}
+          height={600}
         />
       </Link>
     </div>

@@ -1,5 +1,4 @@
 "use server";
-import { client } from "../../sanity/lib/client";
 import defaultPostFilter from "./filterOptions/defaultPostFilter";
 import { revalidateTag } from "next/cache";
 import { loadQuery } from "../../sanity/lib/store";

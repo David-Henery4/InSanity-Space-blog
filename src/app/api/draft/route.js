@@ -6,10 +6,6 @@ import {token} from "../../../../sanity/lib/token"
 
 const clientWithToken = client.withConfig({token})
 
-// Might have to implement this in production:
-// "Securely accessing it from your Headless CMS"
-// Using a token secret
-
 export async function GET(request){
   const {isValid, redirectTo = "/"} = await validatePreviewUrl(clientWithToken, request?.url)
   //

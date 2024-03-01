@@ -1,7 +1,5 @@
 "use server"
-import { client } from "../../sanity/lib/client"
 import singlePostFilter from "./filterOptions/singlePageFilter";
-// import { revalidateTag } from "next/cache";
 import { loadQuery } from "../../sanity/lib/store";
 import { draftMode } from "next/headers";
 
