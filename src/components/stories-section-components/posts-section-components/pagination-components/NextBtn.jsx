@@ -2,8 +2,6 @@ import Link from "next/link"
 
 
 const NextBtn = ({ searchParams, totalNumOfPages }) => {
-  console.log("PostsPagination: ", searchParams);
-  console.log("PostsPagination/totalPAGES: ", totalNumOfPages);
   //
   let tempPageNumber = searchParams?.page ? +searchParams?.page : 1;
   return (

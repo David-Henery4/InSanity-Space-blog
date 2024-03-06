@@ -1,10 +1,3 @@
-// import { createClient } from 'next-sanity'
-// import {
-//   setServerClient,
-//   loadQuery,
-//   useLiveMode,
-//   useQuery,
-// } from "../../sanity-config-lib/loader";
 import { createClient } from "@sanity/client/stega";
 
 import { apiVersion, dataset, projectId, useCdn } from "../env";
@@ -28,5 +21,3 @@ export const client = createClient({
   },
 });
 
-// setServerClient(client);
-// export { loadQuery };

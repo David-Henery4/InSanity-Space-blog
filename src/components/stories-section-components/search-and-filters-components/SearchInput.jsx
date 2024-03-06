@@ -4,7 +4,6 @@ import { useState } from "react";
 import useCreateQueryString from "@/hooks/useCreateQueryString";
 
 const SearchInput = () => {
-  console.log("Search Input");
   const { createQueryString, router } = useCreateQueryString();
   const [searchValue, setSearchValue] = useState("");
   const [isLabelActive, setIsLabelActive] = useState(false);

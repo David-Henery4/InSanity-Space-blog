@@ -4,7 +4,6 @@ import { useSearchParams } from "next/navigation";
 const SearchQueryIndicator = () => {
   const params = useSearchParams();
   const currentSearchValue = params.get("search");
-  console.log("SearchQueryIndicator", currentSearchValue);
   //
   return (
     <div

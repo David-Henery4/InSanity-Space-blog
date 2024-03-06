@@ -7,7 +7,6 @@ import { SidebarContext } from "@/context/sidebarContext";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Sidebar = () => {
-  console.log("sidebar")
   const {setIsSidebarOpen, isSidebarOpen} = useContext(SidebarContext)
   const isScreenTabletAndAbove = useMediaQuery("(min-width:41.25em)");
   //
@@ -27,7 +26,6 @@ const Sidebar = () => {
         </div>
         <div onClick={() => {
           setIsSidebarOpen(false)
-          console.log("Clicked")
         }}>
           <CloseIcon className="hover:cursor-pointer" />
         </div>

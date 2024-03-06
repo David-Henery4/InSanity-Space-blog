@@ -1,6 +1,5 @@
 // export const dynamic = "force-dynamic"; // might not use
 // export const dynamic = "force-static"; // might not use
-// import Image from 'next/image'
 import { v4 as uuidv4 } from "uuid";
 import {
   Hero,
@@ -11,9 +10,6 @@ import {
 
 
 export default async function Home({ searchParams }) {
-  
-  // const searchValues = searchParams?.id?.split(",");
-  // console.log(searchParams)
   //
   return (
     <main
