@@ -1,9 +1,11 @@
 "use client";
 import { SearchIcon } from "../../../../public/assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useCreateQueryString from "@/hooks/useCreateQueryString";
+import { useSearchParams } from "next/navigation";
 
 const SearchInput = () => {
+  const searchParams = useSearchParams()
   const { createQueryString, router } = useCreateQueryString();
   const [searchValue, setSearchValue] = useState("");
   const [isLabelActive, setIsLabelActive] = useState(false);
@@ -20,6 +22,15 @@ const SearchInput = () => {
       `/?${createQueryString("search", trimmedSearchValue)}#posts-container`
     );
   };
+  //
+  useEffect(() => {
+    if (searchParams.get("search")){
+      setSearchValue(searchParams.get("search"));
+      setIsLabelActive(true)
+      return
+    }
+    setSearchValue("");
+  }, [])
   //
   return (
     <div className="w-full flex justify-start items-center bg-darkGrey rounded-md">
