@@ -14,8 +14,8 @@ import { schema } from "./sanity/schema";
 import {locate} from "./sanity-config-lib/locate"
 
 // SANITY_STUDIO_PREVIEW_URL: Still needs to be added to .env.local
-const SANITY_STUDIO_PREVIEW_URL =
-  process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
+// const SANITY_STUDIO_PREVIEW_URL =
+//   process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:3000";
 
 export default defineConfig({
   basePath: "/studio",
