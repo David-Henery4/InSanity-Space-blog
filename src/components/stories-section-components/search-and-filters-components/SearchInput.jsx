@@ -24,13 +24,13 @@ const SearchInput = () => {
   };
   //
   useEffect(() => {
-    if (searchParams.get("search")){
+    if (searchParams.get("search")) {
       setSearchValue(searchParams.get("search"));
-      setIsLabelActive(true)
-      return
+      setIsLabelActive(true);
+      return;
     }
     setSearchValue("");
-  }, [])
+  }, [searchParams]);
   //
   return (
     <div className="w-full flex justify-start items-center bg-darkGrey rounded-md">
